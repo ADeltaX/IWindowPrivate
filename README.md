@@ -6,5 +6,16 @@ If you are using Windows Runtime Projectors **(C#/WinRT (.NET 5), C++/WinRT, Rus
 For **.NET Core 3.0 or older** (including "UWP .NET") use **IWindowsPrivate.cs**. 
 This is because you can't use winmd that has namespaces that starts with "Windows.".
 
-Usage example:
+## Usage example:
+
+### C#
+
+```cs
 ((Window.Current as object) as IWindowPrivate).TransparentBackground = true;
+```
+
+### C++/WinRT
+
+```cpp
+Window::Current().as<IWindowPrivate>().TransparentBackground(true);
+```
