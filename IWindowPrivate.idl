@@ -1,0 +1,61 @@
+import "windowscontracts.idl";
+import "Windows.Foundation.idl";
+import "Windows.UI.Xaml.idl";
+import "Windows.Graphics.DirectX.idl";
+
+namespace Windows.UI.Xaml
+{
+	[contractversion(1.0)]
+	apicontract PrivateApiContract
+	{}
+
+	[contract(PrivateApiContract, 1.0)]
+	//PLACEHOLDER - Replace with the *correct* GUID. I haven't found any hint for this, yet.
+	[uuid(15645012-8F3F-5090-B584-DF078FCC509A)]
+	interface IAtlasRequestCallback
+	{
+		HRESULT AtlasRequest([in] unsigned int width, [in] unsigned int height, [in] Windows.Graphics.DirectX.DirectXPixelFormat pixelFormat, [out] [retval] boolean* value);
+	}
+
+	[contract(PrivateApiContract, 1.0)]
+	[uuid(06636C29-5A17-458D-8EA2-2422D997A922)]
+	interface IWindowPrivate
+	{
+		[propget] HRESULT TransparentBackground([out] [retval] boolean* value);
+		[propput] HRESULT TransparentBackground([in] boolean value);
+		HRESULT Show();
+		HRESULT Hide();
+		HRESULT MoveWindow([in] int x, [in] int y, [in] int width, [in] int height);
+		HRESULT SetAtlasSizeHint([in] unsigned int width, [in] unsigned int height);
+		HRESULT ReleaseGraphicsDeviceOnSuspend([in] boolean enable);
+		HRESULT SetAtlasRequestCallback([in] Windows.UI.Xaml.IAtlasRequestCallback* callback);
+		HRESULT GetWindowContentBoundsForElement([in] Windows.UI.Xaml.DependencyObject* element, [out] [retval] Windows.Foundation.Rect* value);
+	}
+}
+
+//It's here only as a reference for WinUI3....
+/*
+namespace Microsoft.UI.Xaml
+{		
+	[version(0x1)]
+	[uuid(15645012-8F3F-5090-B584-DF078FCC509A)]
+	interface IAtlasRequestCallback
+	{
+		HRESULT AtlasRequest([in] uint width, [in] uint height, [in] DirectXPixelFormat pixelFormat, [out] [retval] value);
+	}
+	
+	[version(0x1)]
+	[uuid(F5DEF8F6-95C2-55CB-B1A4-551B9DA34220)]
+	interface IWindowPrivate
+	{
+		[propget] HRESULT TransparentBackground([out] [retval] boolean* value);
+		[propput] HRESULT TransparentBackground([in] boolean value);
+		HRESULT Show();
+		HRESULT Hide();
+		HRESULT MoveWindow([in] int x, [in] int y, [in] int width, [in] int height);
+		HRESULT SetAtlasSizeHint([in] unsigned int width, [in] unsigned int height);
+		HRESULT ReleaseGraphicsDeviceOnSuspend([in] boolean enable);
+		HRESULT SetAtlasRequestCallback([in] Microsoft.UI.Xaml.IAtlasRequestCallback* callback);
+		HRESULT GetWindowContentBoundsForElement([in] Microsoft.UI.Xaml.IDependencyObject* element, [out] [retval] Windows.Foundation.Rect* value);
+	}
+} */
